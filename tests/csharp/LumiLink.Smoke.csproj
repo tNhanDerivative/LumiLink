@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>Smoke</AssemblyName>
+    <RootNamespace>LumiLink.Smoke</RootNamespace>
+    <LumiLinkRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)../..'))</LumiLinkRoot>
+    <!-- Doi sang build-native/bin de test voi PAL native:
+         dotnet run (project tests/csharp) voi tham so -p:LumiLinkNativeDir=build-native/bin -->
+    <LumiLinkNativeDir Condition="'$(LumiLinkNativeDir)' == ''">$(LumiLinkRoot)/build/bin</LumiLinkNativeDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../bindings/csharp/LumiLink/LumiLink.csproj" />
+    <None Include="$(LumiLinkNativeDir)/*lumilink*.dll;$(LumiLinkNativeDir)/liblumilink*.dylib;$(LumiLinkNativeDir)/liblumilink.so*"
+          CopyToOutputDirectory="PreserveNewest" Visible="false" />
+    <None Include="$(LumiLinkRoot)/tests/golden/raw_sequence.bin" Link="raw_sequence.bin"
+          CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>LumiLink</RootNamespace>
+    <AssemblyName>LumiLink</AssemblyName>
+    <Version>0.1.0</Version>
+    <Description>.NET binding for the LumiLink native library (Bluetooth LED control).</Description>
+  </PropertyGroup>
+
+  <!--
+    Optional: copy the native library next to the managed assembly.
+    dotnet build -p:LumiLinkNativeDir=../../../build/bin
+  -->
+  <ItemGroup Condition="'$(LumiLinkNativeDir)' != ''">
+    <None Include="$(LumiLinkNativeDir)/*lumilink*.dll;$(LumiLinkNativeDir)/liblumilink*.dylib;$(LumiLinkNativeDir)/liblumilink.so*"
+          CopyToOutputDirectory="PreserveNewest"
+          Visible="false" />
+  </ItemGroup>
+
+</Project>

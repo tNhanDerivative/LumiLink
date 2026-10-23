@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Embedded into LumiLink command line tools (see lumilink_bluetooth_executable in CMakeLists.txt).
+     Applications using the library must add NSBluetoothAlwaysUsageDescription to their own Info.plist. -->
+<plist version="1.0">
+<dict>
+  <key>CFBundleIdentifier</key>
+  <string>com.lumilink.tools</string>
+  <key>CFBundleName</key>
+  <string>LumiLink</string>
+  <key>NSBluetoothAlwaysUsageDescription</key>
+  <string>LumiLink uses Bluetooth to control your LED devices.</string>
+</dict>
+</plist>
