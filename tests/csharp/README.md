@@ -60,7 +60,7 @@ Số thứ tự khớp với bảng kiểm chứng ở `doc_lumilink/03-build-te
 | 5. Stress | 10.000 client create/`Dispose`; 5.000 client bỏ cho finalizer; 8 thread × 500 lệnh trên một client | Rò handle, crash trong finalizer, data race |
 | 6. Raw so với golden | Chạy kịch bản `RunRawScenario()` trong process con, so từng byte stdout với `tests/golden/raw_sequence.bin` | Tham số truyền xuống native sai thứ tự hoặc sai kiểu |
 
-Lưu ý nhóm 3: với PAL mock, `Bluetooth` + `FindDevice()` trả `Ok` và `HasDevice` là `True`. Điều đó **không** chứng minh Bluetooth thật hoạt động.
+Lưu ý nhóm 3: với PAL mock, `Bluetooth` + `FindDevice()` trả `Ok` và `HasDevice` là `True`.
 
 ## 5. Test với Bluetooth thật
 
@@ -73,7 +73,7 @@ cmake --build build-native -j
 dotnet run --project tests/csharp -p:LumiLinkNativeDir=$(pwd)/build-native/bin
 ```
 
-Test tự động hiện chỉ chạy `Bluetooth` ở mức "không crash". Để bật đèn thật, thêm đoạn thử riêng vào cuối nhóm 3 hoặc một app khác, ví dụ:
+Để bật đèn thật, thêm đoạn thử riêng vào cuối nhóm 3 hoặc một app khác, ví dụ:
 
 ```csharp
 using var c = new LedClient();

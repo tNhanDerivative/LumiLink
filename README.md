@@ -108,7 +108,6 @@ Test binding (không cần đèn với PAL mock): `dotnet run --project tests/cs
 `LumiLinkNativeDir` copy native library vào thư mục output. Lưu ý:
 - `LumiLinkSafeHandle` gọi `ll_destroy` khi `Dispose` hoặc khi GC finalize, nên ownership vẫn thuộc về thư viện native.
 - Delegate log được giữ trong static field để GC không thu hồi khi native code còn giữ con trỏ tới nó; exception trong handler bị chặn lại, không để lan vào native code.
-- Binding chưa được build/test trên máy phát triển hiện tại (chưa cài .NET SDK).
 
 ## Device managers
 
