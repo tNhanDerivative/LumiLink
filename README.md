@@ -1,16 +1,11 @@
+Project này là một proof of concept cho áp dụng architecture nhiều layer trong việc sharing C++ code cho nhiều OS và platform khác nhau.
 # LumiLink
-
 Thư viện C++17 đa nền tảng để điều khiển đèn LED qua Bluetooth: màu RGB, độ sáng, hiệu ứng (blink / breathe / rainbow) và nhóm LED. Core viết một lần; ra bên ngoài có C++ API, C API (shared library) và binding C#/.NET.
 
 > Trạng thái: có PAL Bluetooth Low Energy native cho macOS (CoreBluetooth), Linux (BlueZ) và Windows (WinRT), cùng một PAL **mock** (thiết bị giả lập) dùng mặc định để phát triển và test. Xem mục [PAL Bluetooth native](#pal-bluetooth-native).
 
 ## Kiến trúc
 
-```
- Client C#/.NET ─► LedClient (5.6) ─► NativeMethods (5.5) ─┐
- Client C / ngôn ngữ khác ────────────────────────────────►├─► C API + platform boundary ─► C++ API ─► Core ─► PAL ─► Bluetooth OS
- Client C++ / iOS ──────────────────────────────────────────────────────────────────────────►┘
-```
 
 | Layer | Thư mục | Ghi chú |
 |---|---|---|
@@ -21,7 +16,6 @@ Thư viện C++17 đa nền tảng để điều khiển đèn LED qua Bluetooth
 | Wrapper .NET | `bindings/csharp/LumiLink/LedClient.cs` | `IDisposable`, exception, `SafeHandle`, log callback |
 | PAL | `pal/` | `IBluetoothDevice` + một thư mục cho mỗi implementation; CMake chọn file nào được build |
 
-**Quy tắc:** mọi business logic nằm trong `core/`. `capi/` và `bindings/` chỉ chuyển đổi kiểu dữ liệu và mã lỗi, vì một số client (C++, iOS) dùng thẳng C++ API và bỏ qua các layer đó.
 
 ## Build
 
